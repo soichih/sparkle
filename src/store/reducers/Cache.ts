@@ -20,7 +20,7 @@ export const cacheReducer = (
 ): CacheState => {
   switch (action.type) {
     case CacheActionTypes.RELOAD_USER_CACHE:
-      console.log("reloading user cache");
+      console.log("reloading user cache", new Date());
       firebase
         .firestore()
         .collection("users")

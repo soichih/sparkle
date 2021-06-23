@@ -133,10 +133,14 @@ const store = createStore(
   )
 );
 
-//load users every 60 seconda
+//load users every 3 minutes (if !document.hidden)
 setInterval(() => {
+  if (document.hidden) {
+    console.debug("document.hidden.. skipping user cache reaload", new Date());
+    return;
+  }
   store.dispatch({ type: CacheActionTypes.RELOAD_USER_CACHE });
-}, 1000 * 60);
+}, 1000 * 60 * 3);
 //initial loading of users
 store.dispatch({ type: CacheActionTypes.RELOAD_USER_CACHE });
 
